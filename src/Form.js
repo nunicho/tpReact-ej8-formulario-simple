@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { validateFields } from './Validation';
 import classnames from 'classnames';
 
+
 const initialState = {
   email: {
     value: '',
@@ -36,15 +37,10 @@ class Form extends Component {
     this.state = initialState;
   }
 
-  /*
-   * validates the field onBlur if sumbit button is not clicked
-   * set the validateOnChange to true for that field
-   * check for error
-   */
+
   handleBlur(validationFunc, evt) {
     const field = evt.target.name;
-    // validate onBlur only when validateOnChange for that field is false
-    // because if validateOnChange is already true there is no need to validate onBlur
+
     if (
       this.state[field]['validateOnChange'] === false &&
       this.state.submitCalled === false
@@ -60,10 +56,6 @@ class Form extends Component {
     return;
   }
 
-  /*
-   * update the value in state for that field
-   * check for error if validateOnChange is true
-   */
   handleChange(validationFunc, evt) {
     const field = evt.target.name;
     const fieldVal = evt.target.value;
@@ -76,28 +68,25 @@ class Form extends Component {
     }));
   }
 
-  /*
-   * validate all fields
-   * check if all fields are valid if yes then submit the Form
-   * otherwise set errors for the feilds in the state
-   */
+
   handleSubmit(evt) {
     evt.preventDefault();
-    // validate all fields
+
     const { email, nombre, apellido, DNI } = this.state;
     const emailError = validateFields.validateEmail(email.value);
     const nombreError = validateFields.validateNombre(nombre.value);
     const apellidoError = validateFields.validateApellido(apellido.value);
     const DNIError = validateFields.validateDNI(DNI.value);
        if ([emailError, nombreError, apellidoError, DNIError ].every(e => e === false)) {
-      // no errors submit the form
+  
       console.log('success');
+      alert('Datos Enviados');
 
-      // clear state and show all fields are validated
+
       this.setState({ ...initialState, allFieldsValidated: true });
       this.showAllFieldsValidated();
     } else {
-      // update the state with errors
+  
       this.setState(state => ({
         email: {
           ...state.email,
@@ -121,7 +110,7 @@ class Form extends Component {
         },
      
       }));
-    }
+   alert('Completar Todos los Datos') }
   }
 
   showAllFieldsValidated() {
@@ -142,7 +131,7 @@ class Form extends Component {
           <div className="card-body">
             {allFieldsValidated && (
               <p className="text-success text-center">
-                DATOS ENVIADOS EXITOSAMENTE - Todos los campos validados. 
+                Todos los campos validados. 
               </p>
             )}
 
