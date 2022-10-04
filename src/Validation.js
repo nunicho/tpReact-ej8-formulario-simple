@@ -14,34 +14,38 @@ class ValidateFields {
    * Returns the response either error or false if there is no error
    */
   validateEmail(email) {
+    const regexMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
     if (validator.isEmpty(email)) {
-      return 'Email is required';
-    } else if (!validator.isEmail(email)) {
-      return 'Invalid Email';
+      return 'Se requiere un email';
+    } else if (!regexMail.test(email)) {
+      return 'Email inválido';
     }
     return false;
   }
 
   validateNombre(nombre) {
+    const regexNombre=  /^[a-zA-Z ]+$/
     if (validator.isEmpty(nombre)) {
       return 'Se requiere nombre';
-    } else if (!validator.isLength(nombre, { min: 3 })) {
-      return 'El nombre should be minimum 3 characters';
+    } else if (!regexNombre.test(nombre)){
+      return 'El nombre ingresado es incorrecto';
     }
     return false;
   }
     validateApellido(apellido) {
+    const regexApellido=  /^[a-zA-Z ]+$/
     if (validator.isEmpty(apellido)) {
       return 'Se requiere apellido';
-    } else if (!validator.isLength(apellido, { min: 3 })) {
-      return 'El apellido should be minimum 3 characters';
+    } else if (!regexApellido.test(apellido)){
+      return 'El apellido ingresado es incorrecto';
     }
     return false;
   }
       validateDNI(DNI) {
+        const regexDNI = /^\d{8}(?:[-\s]\d{4})?$/
     if (validator.isEmpty(DNI)) {
       return 'Se requiere DNI';
-    } else if (!validator.isLength(DNI, { min: 8, max: 8 })) {
+    }  else if(!regexDNI.test(DNI)) {
       return 'El DNI debe contar con 8 caracteres. Anteponer el 0 de ser necesario.';
     }
     return false;

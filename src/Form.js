@@ -88,7 +88,7 @@ class Form extends Component {
     const emailError = validateFields.validateEmail(email.value);
     const nombreError = validateFields.validateNombre(nombre.value);
     const apellidoError = validateFields.validateApellido(apellido.value);
-    const DNIError = validateFields.validateApellido(DNI.value);
+    const DNIError = validateFields.validateDNI(DNI.value);
        if ([emailError, nombreError, apellidoError, DNIError ].every(e => e === false)) {
       // no errors submit the form
       console.log('success');
@@ -155,7 +155,7 @@ class Form extends Component {
                   type="text"
                   name="email"
                   value={email.value}
-                  placeholder="Enter your email"
+                  placeholder="Ingrese su email"
                   className={classnames(
                     'form-control',
                     { 'is-valid': email.error === false },
@@ -178,7 +178,7 @@ class Form extends Component {
                   type="text"
                   name="nombre"
                   value={nombre.value}
-                  placeholder="Enter your email"
+                  placeholder="Ingrese su nombre"
                   className={classnames(
                     'form-control',
                     { 'is-valid': nombre.error === false },
@@ -201,7 +201,7 @@ class Form extends Component {
                   type="text"
                   name="apellido"
                   value={apellido.value}
-                  placeholder="Enter your email"
+                  placeholder="Ingrese su apellido"
                   className={classnames(
                     'form-control',
                     { 'is-valid': apellido.error === false },
@@ -237,7 +237,7 @@ class Form extends Component {
                     this.handleBlur(validateFields.validateDNI, evt)
                   }
                 />
-                <div className="invalid-feedback">{apellido.error}</div>
+                <div className="invalid-feedback">{DNI.error}</div>
               </div>
 
               <button
