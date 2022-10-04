@@ -136,13 +136,13 @@ class Form extends Component {
       <div className="Form col-md-8 col-lg-6">
         <div className="card shadow">
           <div className="card-header">
-            <h4 className="text-center">Form Validation React</h4>
+            <h4 className="text-center">Formulario </h4>
           </div>
 
           <div className="card-body">
             {allFieldsValidated && (
               <p className="text-success text-center">
-                Success, All fields are validated
+                DATOS ENVIADOS EXITOSAMENTE - Todos los campos validados. 
               </p>
             )}
 
