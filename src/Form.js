@@ -8,10 +8,23 @@ const initialState = {
     validateOnChange: false,
     error: ''
   },
-  password: {
+    nombre: {
     value: '',
     validateOnChange: false,
     error: ''
+    
+  },
+    apellido: {
+    value: '',
+    validateOnChange: false,
+    error: ''
+    
+  },
+    DNI: {
+    value: '',
+    validateOnChange: false,
+    error: ''
+    
   },
   submitCalled: false,
   allFieldsValidated: false
@@ -71,10 +84,12 @@ class Form extends Component {
   handleSubmit(evt) {
     evt.preventDefault();
     // validate all fields
-    const { email, password } = this.state;
+    const { email, nombre, apellido, DNI } = this.state;
     const emailError = validateFields.validateEmail(email.value);
-    const passwordError = validateFields.validatePassword(password.value);
-    if ([emailError, passwordError].every(e => e === false)) {
+    const nombreError = validateFields.validateNombre(nombre.value);
+    const apellidoError = validateFields.validateApellido(apellido.value);
+    const DNIError = validateFields.validateApellido(DNI.value);
+       if ([emailError, nombreError, apellidoError, DNIError ].every(e => e === false)) {
       // no errors submit the form
       console.log('success');
 
@@ -89,11 +104,22 @@ class Form extends Component {
           validateOnChange: true,
           error: emailError
         },
-        password: {
-          ...state.password,
+            nombre: {
+          ...state.nombre,
           validateOnChange: true,
-          error: passwordError
-        }
+          error: nombreError
+        },
+            apellido: {
+          ...state.apellido,
+          validateOnChange: true,
+          error: apellidoError
+        },
+            DNI: {
+          ...state.DNI,
+          validateOnChange: true,
+          error: DNIError
+        },
+     
       }));
     }
   }
@@ -105,7 +131,7 @@ class Form extends Component {
   }
 
   render() {
-    const { email, password, allFieldsValidated } = this.state;
+    const { email, nombre, apellido, DNI, allFieldsValidated } = this.state;
     return (
       <div className="Form col-md-8 col-lg-6">
         <div className="card shadow">
@@ -144,29 +170,76 @@ class Form extends Component {
                 />
                 <div className="invalid-feedback">{email.error}</div>
               </div>
-
-              {/* Password field */}
+                      
+              {/* Nombre field */}
               <div className="form-group">
-                <label>Password</label>
+                <label>Nombre</label>
                 <input
-                  type="password"
-                  name="password"
-                  value={password.value}
-                  placeholder="Enter your password"
+                  type="text"
+                  name="nombre"
+                  value={nombre.value}
+                  placeholder="Enter your email"
                   className={classnames(
                     'form-control',
-                    { 'is-valid': password.error === false },
-                    { 'is-invalid': password.error }
+                    { 'is-valid': nombre.error === false },
+                    { 'is-invalid': nombre.error }
                   )}
                   onChange={evt =>
-                    this.handleChange(validateFields.validatePassword, evt)
+                    this.handleChange(validateFields.validateNombre, evt)
                   }
                   onBlur={evt =>
-                    this.handleBlur(validateFields.validatePassword, evt)
+                    this.handleBlur(validateFields.validateNombre, evt)
                   }
                 />
-                <div className="invalid-feedback">{password.error}</div>
+                <div className="invalid-feedback">{nombre.error}</div>
               </div>
+
+                {/* Apellido field */}
+              <div className="form-group">
+                <label>Apellido</label>
+                <input
+                  type="text"
+                  name="apellido"
+                  value={apellido.value}
+                  placeholder="Enter your email"
+                  className={classnames(
+                    'form-control',
+                    { 'is-valid': apellido.error === false },
+                    { 'is-invalid': apellido.error }
+                  )}
+                  onChange={evt =>
+                    this.handleChange(validateFields.validateApellido, evt)
+                  }
+                  onBlur={evt =>
+                    this.handleBlur(validateFields.validateApellido, evt)
+                  }
+                />
+                <div className="invalid-feedback">{apellido.error}</div>
+              </div>
+
+                {/* DNI field */}
+              <div className="form-group">
+                <label>DNI</label>
+                <input
+                  type="text"
+                  name="DNI"
+                  value={DNI.value}
+                  placeholder="Ingrese su DNI"
+                  className={classnames(
+                    'form-control',
+                    { 'is-valid': DNI.error === false },
+                    { 'is-invalid': DNI.error }
+                  )}
+                  onChange={evt =>
+                    this.handleChange(validateFields.validateDNI, evt)
+                  }
+                  onBlur={evt =>
+                    this.handleBlur(validateFields.validateDNI, evt)
+                  }
+                />
+                <div className="invalid-feedback">{apellido.error}</div>
+              </div>
+
               <button
                 type="submit"
                 className="btn btn-secondary btn-block"

@@ -22,11 +22,27 @@ class ValidateFields {
     return false;
   }
 
-  validatePassword(password) {
-    if (validator.isEmpty(password)) {
-      return 'Password is required';
-    } else if (!validator.isLength(password, { min: 8 })) {
-      return 'Password should be minimum 8 characters';
+  validateNombre(nombre) {
+    if (validator.isEmpty(nombre)) {
+      return 'Se requiere nombre';
+    } else if (!validator.isLength(nombre, { min: 3 })) {
+      return 'El nombre should be minimum 3 characters';
+    }
+    return false;
+  }
+    validateApellido(apellido) {
+    if (validator.isEmpty(apellido)) {
+      return 'Se requiere apellido';
+    } else if (!validator.isLength(apellido, { min: 3 })) {
+      return 'El apellido should be minimum 3 characters';
+    }
+    return false;
+  }
+      validateDNI(DNI) {
+    if (validator.isEmpty(DNI)) {
+      return 'Se requiere DNI';
+    } else if (!validator.isLength(DNI, { min: 8, max: 8 })) {
+      return 'El DNI debe contar con 8 caracteres. Anteponer el 0 de ser necesario.';
     }
     return false;
   }
